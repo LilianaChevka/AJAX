@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+<table id="users">
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Name</th>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+        let userTableBody = $('#users');
+        $.get('https://reqres.in/api/users', function (result) {
+            let users = result.data;
+            for (let user of users) {
+                let row = `<tr>
+                               <td>${user.id}</td>
+                               <td>${user.email}</td>
+                               <td>${user.first_name} ${user.last_name}</td>
+                           </tr>`
+                userTableBody.append(row);
+            }
+        });
+    });
+</script>
+</body>
+</html>
